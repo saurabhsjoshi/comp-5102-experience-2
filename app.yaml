@@ -22,3 +22,13 @@ spec:
       containers:
         - name: cas-test
           image: cas-app:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: FACTS_SERVER
+              value: ""
+            - name: CASSANDRA_SERVER
+              value: ""
+            - name: CASSANDRA_PORT
+              value: "9042"
