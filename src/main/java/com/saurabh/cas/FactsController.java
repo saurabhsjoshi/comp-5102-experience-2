@@ -18,18 +18,14 @@ import java.util.UUID;
 @RestController
 public class FactsController {
 
-
     private final CassandraTemplate cassandraTemplate;
 
     @Value("${facts.server:http://localhost:8080}")
     private String factsServer;
 
-    private final FactsRepository repository;
-
     @Autowired
-    public FactsController(CassandraTemplate cassandraTemplate, FactsRepository repository) {
+    public FactsController(CassandraTemplate cassandraTemplate) {
         this.cassandraTemplate = cassandraTemplate;
-        this.repository = repository;
     }
 
     /**

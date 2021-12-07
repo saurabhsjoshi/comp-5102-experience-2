@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cas-test
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cas-test-app
+  template:
+    metadata:
+      labels:
+        app: cas-test-app
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: cas-test-app
+      containers:
+        - name: cas-test
+          image: cas-app:latest
